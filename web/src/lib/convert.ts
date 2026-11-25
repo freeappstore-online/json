@@ -70,9 +70,8 @@ function toYamlString(value: unknown, depth: number): string {
         const firstLine = objStr.split("\n")[0];
         const rest = objStr.split("\n").slice(1);
         lines.push(`${indent}- ${firstLine}`);
-        for (const r of rest) {
-          lines.push(`${indent}  ${r.trimStart()}`);
-        }
+        // Already indented for depth + 1, i.e. under the "- " marker
+        lines.push(...rest);
       } else {
         lines.push(`${indent}- ${str}`);
       }
